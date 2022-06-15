@@ -1,0 +1,264 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.nav-desktop nav, .logo {
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px dotted black; */
+    vertical-align: middle;
+    gap: .25rem;
+    align-items: center;
+}
+
+.nav-desktop {
+    width: 60%;
+}
+
+.nav-desktop nav *{
+    /* border: 1px solid blue; */
+    vertical-align: middle;
+    padding: .5rem 0rem;
+    padding-top: 1rem;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: black;
+}
+
+.nav-mobile nav, .nav-mobile {
+    display: none;
+}
+
+.background-exit {
+    display: none;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .nav-desktop {
+        display: none;
+    }
+
+    .nav-mobile {
+        display: block;
+    }
+
+
+    /* kill button animation */
+    nav .buttonB {
+        text-decoration: none;
+    }
+
+    nav .buttonB::after {
+        border-bottom: none;
+        transition: none;
+    }
+    
+    nav .buttonB:hover:after {
+        padding-bottom: 0;
+    }
+    
+    nav .buttonB::after {
+        padding-bottom: 0;
+    }
+
+
+    .nav-mobile nav {
+        align-items: flex-start;
+    }
+
+    /* .background-exit {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: black;
+        left: 0;
+        opacity: .2;
+        z-index: 1;
+    } */
+
+   
+
+
+    /* Helper code for hamburger menu */
+    /* --------------------------------------------------------- */
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+
+
+    .toggler{
+    /* ALWAYS KEEPING THE TOGGLER OR THE CHECKBOX ON TOP OF EVERYTHING :  */
+        z-index:4;
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        top: 0;
+        right: 5%;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    .hamburger{
+        position: absolute;
+        top: 0;
+        right: 3%;
+        height: 30px;
+        width: 35px;
+        padding: 0.6rem;
+        z-index: 3;
+    
+    /* FOR DISPLAYING EVERY ELEMENT IN THE CENTER : */
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* CREATING THE MIDDLE LINE OF THE HAMBURGER : */
+
+    .hamburger > div{
+        position: relative;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        top: 0;
+        left: 0;
+        background: black;
+        height: 1.7px;
+        width: 60%;
+        transition: all  0.4s ease;
+    }
+
+    /* CREATING THE TOP AND BOTTOM LINES : 
+    TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
+
+    .hamburger > div::before,
+    .hamburger > div::after{
+        content: '';
+        position: absolute;
+        top: -10px;
+        background: black;
+        width: 100%;
+        height: 1.5px;
+        transition: all  0.4s ease;
+    }
+
+    .hamburger > div::after{
+        top: 10px;
+    }
+
+    /* IF THE TOGGLER IS IN ITS CHECKED STATE, THEN SETTING THE BACKGROUND OF THE MIDDLE LAYER TO COMPLETE BLACK AND OPAQUE :  */
+
+    .toggler:checked + .hamburger > div{
+        background: rgba(0,0,0,0);
+    }
+
+    .toggler:checked ~ .background {
+        display: block;
+    }
+
+    .toggler:checked + .hamburger > div::before{
+        top: 0;
+        transform: rotate(45deg);
+        background: black;
+    }
+
+    /* AND ROTATING THE TOP AND BOTTOM LINES :  */
+
+    .toggler:checked + .hamburger > div::after{
+        top: 0;
+        transform: rotate(135deg);
+        background: black;
+    }
+
+
+    /* MAIN MENU WITH THE WHITE BACKGROUND AND THE TEXT :  */
+
+    .menu{
+        position: fixed;
+        z-index: 2;
+        background: gray;
+        width: 0%;
+        height: 100vh;
+        right: 0;
+    
+    /* APPLYING TRANSITION TO THE MENU :  */
+    
+        transition: all 0.4s ease;
+        
+    }
+
+    /* IF THE TOGGLER IS CHECKED, THEN INCREASE THE WIDTH OF THE MENU TO 30% , CREATING A SMOOTH EFFECT :  */
+
+    .toggler:checked ~ .menu{
+        width: 40%;
+    }
+
+    /* STYLING THE LIST :  */
+
+    .menu >  div > nav {
+        display: flex;
+        flex-direction: column;
+        top: 0px;
+        z-index: 2;
+    
+    /* HIDDEN INITIALLY  :  */
+    
+        visibility: hidden;
+    }
+
+    .menu > div > nav:first-child {
+        padding-top: 50px;
+    }
+
+    .menu > div > nav {
+        list-style: none;
+    }
+
+    /* Fix this reference */
+    .menu > div > nav > a{
+        color: whitesmoke;
+        text-decoration: none;
+        font-size: 1rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 1rem;
+        margin-right: 2rem;
+        width: 100%;
+        text-align: left;
+        z-index: 2;
+    }
+
+    /* WHEN THE TOGGLER IS CHECKED, CHANGE THE VISIBILITY TO VISIBLE :  */
+
+    .toggler:checked ~ .menu > div > nav{
+        transition: visibility 0.4s ease;
+        transition-delay: 0.1s;
+        visibility: visible;
+    }
+
+    .toggler:checked ~ .menu > div > nav > a:hover{
+        color: darkblue;
+        text-decoration: underline;
+        border-left: 4px solid darkblue;
+        background: lightgrey;
+    }
+
+
+
+  }
+
+
+
+ 
